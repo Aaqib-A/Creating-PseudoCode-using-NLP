@@ -1,0 +1,223 @@
+define	CMD
+global	SCOPE
+variable	D_TYPE
+
+create	CMD
+global	SCOPE
+variable	D_TYPE
+
+define	CMD
+variable	D_TYPE
+
+create	CMD
+variable	D_TYPE
+
+set	CMD
+variable	D_TYPE
+equal	EQUAL
+to	TO
+10	AMNT
+
+set	CMD
+variable	D_TYPE
+i	VAR
+=	EQUAL
+10	AMNT
+
+define	CMD
+variable	D_TYPE
+i	VAR
+
+create	CMD
+variable	D_TYPE
+i	VAR
+
+set	CMD
+variable	D_TYPE
+equal	EQUAL
+I	VAR
+to	TO
+0	AMNT
+
+set	CMD
+variable	D_TYPE
+i	VAR
+=	EQUAL
+0	AMNT
+
+define	CMD
+variable	D_TYPE
+j	VAR
+
+create	CMD
+variable	D_TYPE
+j	VAR
+
+set	CMD
+variable	D_TYPE
+equal	EQUAL
+j	VAR
+to	TO
+0	AMNT
+
+set	CMD
+variable	D_TYPE
+j	VAR
+=	EQUAL
+0	AMNT
+
+set	CMD
+text	VAR
+=	EQUAL
+"	"""
+hi	VALUE
+"	"""
+
+define	CMD
+variable	D_TYPE
+text1	VAR
+
+define	CMD
+variable	D_TYPE
+text1	VAR
+=	EQUAL
+"	"""
+please	VALUE
+enter	VALUE
+value	VALUE
+"	"""
+
+set	CMD
+variable	D_TYPE
+text1	VAR
+=	EQUAL
+"	"""
+please	VALUE
+enter	VALUE
+value	VALUE
+"	"""
+
+set	CMD
+text1	VAR
+=	EQUAL
+"	"""
+please	VALUE
+enter	VALUE
+value	VALUE
+"	"""
+
+print	CMD
+text1	VAR
+
+print	CMD
+"	"""
+please	VALUE
+select	VALUE
+value	VALUE
+"	"""
+
+print	CMD
+i	VAR
+
+print	CMD
+text1	VAR
++	OPER
+i	VAR
+
+print	CMD
+"	"""
+please	VALUE
+select	VALUE
+value	VALUE
+"	"""
++	OPER
+i	VAR
+
+input	VAR
+text1	VAR
+
+input	VAR
+"	"""
+please	VALUE
+enter	VALUE
+name	VALUE
+"	"""
+
+get	CMD
+text1	VAR
+
+get	CMD
+"	"""
+please	VALUE
+enter	VALUE
+name	VALUE
+"	"""
+
+print	CMD
+a	VAR
+on	OTHER
+screen	CUST_CLASS
+
+print	CMD
+b	VAR
+
+show	CMD
+a	VAR
+
+show	CMD
+b	VAR
+on	OTHER
+screen	CUST_CLASS
+
+print	CMD
+a	VAR
+to	TO
+log	CUST_CLASS
+
+print	CMD
+b	VAR
+to	TO
+log	CUST_CLASS
+
+print	CMD
+a	VAR
+to	TO
+printer	CUST_CLASS
+
+print	CMD
+b	VAR
+to	TO
+printer	CUST_CLASS
+
+save	CMD
+name	VAR
+
+save	CMD
+name	VAR
+and	CC
+address	VAR
+
+save	CMD
+name	VAR
+to	TO
+database	CUST_CLASS
+
+save	CMD
+name	VAR
+and	CC
+address	VAR
+to	TO
+database	CUST_CLASS
+
+save	CMD
+name	VAR
+to	TO
+file	CUST_CLASS
+
+save	CMD
+name	VAR
+and	CC
+address	VAR
+to	TO
+file	CUST_CLASS
+
