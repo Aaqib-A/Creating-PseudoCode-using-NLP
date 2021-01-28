@@ -1,0 +1,42 @@
+define global variable
+create global variable
+define variable
+create variable
+set variable equal to 10
+set variable i=10
+define variable i
+create variable i
+set variable equal I to 0
+set variable i=0
+define variable j
+create variable j
+set variable equal j to 0
+set variable j=0
+set text = "hi"
+define variable text1
+define variable text1="please enter value"
+set variable text1="please enter value"
+set text1="please enter value"
+print text1
+print "please select value"
+print i
+print text1 + i
+print "please select value" + i
+input text1
+input "please enter name"
+get text1
+get "please enter name"
+print a on screen
+print b
+show a
+show b on screen
+print a to log
+print b to log
+print a to printer
+print b to printer
+save name
+save name and address
+save name to database
+save name and address to database
+save name to file
+save name and address to file
