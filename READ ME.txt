@@ -1,8 +1,11 @@
 To Do List:
 
-Add "then", "if", "else if", "else", "if else" and "elif"
+Add conditions: "then", "if", "else if", "else", "if else" and "elif"
 
-Add ">", "<" , ">=","<=" , "!=", "=="
+Add comparators: ">", "<" , ">=","<=" , "!=", "==" 
 
 Add "screen"
 Add loops
+
+
+Add "," "and" "or" as seperators

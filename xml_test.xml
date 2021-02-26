@@ -1,11 +1,14 @@
 <?xml version="1.0" ?>
 <root>
+	<statement value="create a function to add a and local number value1 = 15 and b"/>
 	<program type="function" name="test">
 		<variables>
-			<variable name="a" datatype="any" scope="NA" value="NA"/>
-			<variable name="b" datatype="any" scope="NA" value="NA"/>
+			<variable name="a" scope="local" datatype="number"/>
+			<variable name="value1" scope="local" datatype="number" value="15"/>
+			<variable name="b" scope="local" datatype="number"/>
 		</variables>
 		<command name="create"/>
 		<operation name="add"/>
+		<operation name="and"/>
 	</program>
 </root>
