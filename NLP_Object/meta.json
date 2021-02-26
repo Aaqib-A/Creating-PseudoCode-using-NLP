@@ -28,6 +28,7 @@
       "FUNC_PROG",
       "OPERATOR",
       "SCOPE",
+      "SEPERATOR",
       "SPL_CLASS",
       "VALUE",
       "VARI"
