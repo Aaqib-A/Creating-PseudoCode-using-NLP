@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<root>
+	<program type="function" name="test">
+		<variables>
+			<variable name="a" datatype="any" scope="NA" value="NA"/>
+			<variable name="b" datatype="any" scope="NA" value="NA"/>
+		</variables>
+		<command name="create"/>
+		<operation name="add"/>
+	</program>
+</root>
