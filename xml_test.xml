@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <root>
-	<statement value="create a function to add a and local number value1 = 15, b"/>
+	<statement value="create a function to add a and local number value1 = 15 and b"/>
 	<program type="function" name="test">
 		<variables>
 			<variable name="a"/>
