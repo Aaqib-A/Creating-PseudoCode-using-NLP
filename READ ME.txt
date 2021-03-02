@@ -1,11 +1,24 @@
 To Do List:
 
-Add conditions: "then", "if", "else if", "else", "if else" and "elif"
+1. Add conditions: "then", "if", "else if", "else", "if else" and "elif"
 
-Add comparators: ">", "<" , ">=","<=" , "!=", "==" 
+2. Add comparators: ">", "<" , ">=","<=" , "!=", "==" 
 
-Add "screen"
-Add loops
+3 .Add "screen"
+4 .Add loops
 
 
-Add "," "and" "or" as seperators
+
+6. Create a program named prog_name 
+7. Create a program prog_name to add
+8. A program named prog_name for adding
+
+
+
+
+
+
+
+
+Done:
+5. Add "," "and" "or" as seperators
