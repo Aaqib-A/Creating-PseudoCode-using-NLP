@@ -8,17 +8,11 @@ To Do List:
 4 .Add loops
 
 
-
-6. Create a program named prog_name 
-7. Create a program prog_name to add
-8. A program named prog_name for adding
-
-
-
-
+7. Add statement for training data to generate prog_name 
 
 
 
 
 Done:
 5. Add "," "and" "or" as seperators
+6. Create a program named prog_name 
