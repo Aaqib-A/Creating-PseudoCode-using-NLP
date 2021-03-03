@@ -25,11 +25,14 @@
     "ner":[
       "COMMAND",
       "DATATYPE",
+      "EQUAL",
       "FUNC_PROG",
       "OPERATOR",
+      "OTHER",
       "SCOPE",
       "SEPERATOR",
       "SPL_CLASS",
+      "TEXT",
       "VALUE",
       "VARI"
     ]

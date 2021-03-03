@@ -13,7 +13,7 @@
 'command_print', (10752, 85)
 'command_input', (11264, 54)
 'func_prog', (11776, 85)
-'special_class', (12288, 58)
+'special_class', (12288, 72)
 'special_function', (12800, 18)
 'other_tags', (13312, 35)
 'seperators', (13824, 26)
