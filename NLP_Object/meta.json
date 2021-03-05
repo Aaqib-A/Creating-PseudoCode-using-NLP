@@ -24,11 +24,11 @@
   "labels":{
     "ner":[
       "COMMAND",
+      "COUNT",
       "DATATYPE",
       "EQUAL",
       "FUNC_PROG",
       "OPERATOR",
-      "OTHER",
       "SCOPE",
       "SEPERATOR",
       "SPL_CLASS",
