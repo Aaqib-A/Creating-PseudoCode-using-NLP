@@ -27,6 +27,7 @@
       "COUNT",
       "DATATYPE",
       "EQUAL",
+      "FUNC_NAME",
       "FUNC_PROG",
       "OPERATOR",
       "SCOPE",
