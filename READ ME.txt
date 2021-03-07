@@ -4,11 +4,10 @@ To Do List:
 
 2. Add comparators: ">", "<" , ">=","<=" , "!=", "==" 
 
-3 .Add "screen"
+
 4 .Add loops
 
-
-7. Add statement for training data to generate prog_name 
+8. 
 
 
 
@@ -16,3 +15,5 @@ To Do List:
 Done:
 5. Add "," "and" "or" as seperators
 6. Create a program named prog_name 
+7. Add statement for training data to generate prog_name 
+3. Add "screen"
