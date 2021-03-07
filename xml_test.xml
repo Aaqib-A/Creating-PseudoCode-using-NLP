@@ -1,13 +1,10 @@
 <?xml version="1.0" ?>
 <root>
-	<statement value="create a function to add a and local number value1 = 15 and b"/>
-	<program type="function" name="test">
+	<statement value="save name1 and address to file"/>
+	<program type="program" name="save_name1">
 		<variables>
-			<variable name="a"/>
-			<variable name="value1" scope="local" datatype="number" value="15"/>
-			<variable name="b" scope="local" datatype="number"/>
+			<variable name="name1" datatype="string"/>
+			<variable name="address" datatype="string"/>
 		</variables>
-		<command name="create"/>
-		<operation name="add"/>
 	</program>
 </root>
