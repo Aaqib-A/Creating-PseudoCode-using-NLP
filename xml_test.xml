@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <root>
-	<statement value="save name1 and address to file"/>
-	<program type="program" name="save_name1">
+	<statement value="print a to log"/>
+	<program type="program" name="print_a">
 		<variables>
-			<variable name="name1" datatype="string"/>
-			<variable name="address" datatype="string"/>
+			<variable name="a" datatype="string"/>
 		</variables>
+		<print variable="a"/>
 	</program>
 </root>
