@@ -4,10 +4,12 @@ To Do List:
 
 2. Add comparators: ">", "<" , ">=","<=" , "!=", "==" 
 
-
 4 .Add loops
 
-8. 
+8. Seperate 'add' and '+'
+9. Re-write all seed lines
+
+10. ANTLR - Create parse tree
 
 
 
