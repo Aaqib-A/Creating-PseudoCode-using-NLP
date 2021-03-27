@@ -1,13 +1,11 @@
 <?xml version="1.0" ?>
 <root>
-	<statement value="display text1 as &quot;please enter value&quot;
+	<statement value="display character
 "/>
-	<program type="program" name="display_text1">
+	<program type="program" name="display_character">
 		<variables>
-			<variable name="text1" datatype="value"/>
-			<variable name="&quot;" datatype="value"/>
-			<variable name="&quot;" datatype="value"/>
+			<variable name="char_1" datatype="char"/>
 		</variables>
-		<print variable1="text1" variable2="&quot;" variable3="&quot;"/>
+		<print/>
 	</program>
 </root>

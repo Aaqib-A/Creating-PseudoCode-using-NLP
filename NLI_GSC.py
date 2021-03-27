@@ -28,6 +28,11 @@ from XML_to_Program import *
 
 def processStatement():
 
+    #combo_value = combo1.get()
+    #combo_index = combo1.current()
+    #print(combo_value)
+    #print(combo_index)
+    
     source = "Data"
     filename = "pseudocode.xml"
     pseudocode_file = os.path.join(source, filename)
@@ -59,15 +64,13 @@ window.title("NLI-GSC: Natural Language Interface for Generating Source Code")
 
 window.geometry("1000x300")
 
+combo1 = tkinter.ttk.Combobox(window, state="readonly")
+combo1['values'] = ("python", "C", "\'Algorithm\'")
+combo1.current(0)
 
 instruction_label = tkinter.Label(window, text = "Please enter your idea in Natural Language")
 input_box = tkinter.Text(window, height=10, width=62)
 output_box = tkinter.Text(window, height=10, width=62, state='disabled')
-#output_label = tkinter.Label(window, text = "", justify="left")
-
-combo1 = tkinter.ttk.Combobox(window)
-combo1['values'] = ("python", "C", "\'Algorithm\'")
-combo1.current(0)
 
 bt1 = tkinter.Button(window, text="Enter", command = processStatement)
 
@@ -83,7 +86,6 @@ instruction_label.grid(row=1,column=0)
 
 input_box.grid(row=2,column=0)
 output_box.grid(row=2,column=1)
-#output_label.grid(row=2,column=1)
 bt1.grid(row=3,column=0)#, colspan=2)
 
 

@@ -1,10 +1,3 @@
 def main():
-	value text1 
-	value " 
-	value " 
+	char char_1 
 
-	print(text1 + " + ")
-
-
-if __name__ == "__main__":
-	main()
