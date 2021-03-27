@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<root>
+	<statement value="Create var var1"/>
+	<program type="program" name="Create_var">
+		<variables>
+			<variable name="var1" datatype="variable"/>
+		</variables>
+	</program>
+</root>
