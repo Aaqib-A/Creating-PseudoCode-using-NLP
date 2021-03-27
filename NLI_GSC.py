@@ -9,7 +9,8 @@ def clickedbt1():
         data = file.read()
         #output_label.configure(text = data)
         #output_box.configure(text = data
-        output_box.set(data)
+        #output_box.set(data)
+        output_box.insert(0,data)
 
 import spacy
 from spacy import displacy
@@ -23,7 +24,7 @@ import re
 from XML_Creator import *
 from XML_to_Program import *
 
-nlp = spacy.load("./NLP_Object")
+#nlp = spacy.load("./NLP_Object")
 
 def processStatement():
 
@@ -31,21 +32,24 @@ def processStatement():
     filename = "pseudocode.xml"
     pseudocode_file = os.path.join(source, filename)
     
-    statement = input_box.get()
+    #statement = input_box.get("1.0","end-1c")
+    statement = input_box.get("1.0",tkinter.END)
 
     XML_Creator_func(statement, pseudocode_file)
     
-
     filename = "program.py"
     program_file = os.path.join(source, filename)
     
     XML_toProgram(pseudocode_file, program_file)
     
+    
     with open(program_file) as file:
         data = file.read()
-        #output_label.configure(text = data)
-        #output_box.configure(text = data
-        output_box.insert ( data, 0 )
+        
+        output_box.configure(state='normal')
+        output_box.delete('1.0', tkinter.END)
+        output_box.insert ( "1.0", data)
+        output_box.configure(state='disabled')
 
 import tkinter
 import tkinter.ttk
@@ -56,12 +60,9 @@ window.title("NLI-GSC: Natural Language Interface for Generating Source Code")
 window.geometry("1000x300")
 
 
-
-
-
 instruction_label = tkinter.Label(window, text = "Please enter your idea in Natural Language")
-input_box = tkinter.Text(window)
-output_box = tkinter.Text(window)
+input_box = tkinter.Text(window, height=10, width=62)
+output_box = tkinter.Text(window, height=10, width=62, state='disabled')
 #output_label = tkinter.Label(window, text = "", justify="left")
 
 combo1 = tkinter.ttk.Combobox(window)

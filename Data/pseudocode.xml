@@ -1,9 +1,13 @@
 <?xml version="1.0" ?>
 <root>
-	<statement value="Create var var1"/>
-	<program type="program" name="Create_var">
+	<statement value="display text1 as &quot;please enter value&quot;
+"/>
+	<program type="program" name="display_text1">
 		<variables>
-			<variable name="var1" datatype="variable"/>
+			<variable name="text1" datatype="value"/>
+			<variable name="&quot;" datatype="value"/>
+			<variable name="&quot;" datatype="value"/>
 		</variables>
+		<print variable1="text1" variable2="&quot;" variable3="&quot;"/>
 	</program>
 </root>
