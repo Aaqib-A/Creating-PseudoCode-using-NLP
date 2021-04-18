@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<root>
+	<statement value="create int v1
+
+"/>
+	<program type="program" name="create_int">
+		<variables>
+			<variable name="v1" datatype="integer"/>
+		</variables>
+	</program>
+</root>
