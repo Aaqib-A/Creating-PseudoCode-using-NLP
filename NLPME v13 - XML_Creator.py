@@ -23,6 +23,7 @@ def entity_identify(statement):
     return (ent_text,ent_label)
     
 nlp_default = spacy.load("en_core_web_lg")
+
 def get_keywords(keyword):
     doc = nlp_default(keyword)
     token=""
@@ -36,8 +37,6 @@ def get_keywords(keyword):
         return ("float") 
     elif (token == "number" or token == "num"):
         return ("number")
-    elif (token == "variable" or token == "var" or token == "vari"):
-        return ("variable")
     elif (token == "variable" or token == "var" or token == "vari"):
         return ("variable")
     elif (token == "double" or token == "doub"):
@@ -97,7 +96,27 @@ def get_keywords(keyword):
         return ("function")
     elif (token == "program" or token == "programme" or token == "prog" or token == "prg"):
         return ("program")
+        
+    elif(token == "if"):
+        return("if")
+    elif(token == "then"):
+        return("then")
+    elif(token == "else if" or "elif" or "elseif" or "if else" or "ifelse"):
+        return("else if")
+    elif(token == "else"):
+        return ("else")
     
+    elif(token == "switch"):
+        return("switch")
+        
+    elif(token == "for"):
+        return("for")
+    elif(token == "while"):
+        return("while")
+    elif(token == "do while"):
+        return("do while")
+        
+        
     else:
         return(token)
     
