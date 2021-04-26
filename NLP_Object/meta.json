@@ -29,6 +29,7 @@
       "EQUAL",
       "FUNC_NAME",
       "FUNC_PROG",
+      "INIT_COMMAND",
       "OPERATOR",
       "SCOPE",
       "SEPERATOR",
