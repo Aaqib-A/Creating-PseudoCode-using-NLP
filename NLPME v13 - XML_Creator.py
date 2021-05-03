@@ -2,13 +2,7 @@ import spacy
 from spacy import displacy
 
 nlp = spacy.load("./NLP_Object")
-
-def entity_display(statement):
-    doc = nlp(statement) 
-    #for ent in doc.ents:
-        #print (ent.text, ent.start_char, ent.end_char, ent.label_)
-
-    displacy.render(nlp(doc.text), style="ent", jupyter=True)
+nlp_default = spacy.load("en_core_web_lg")
 
 def entity_identify(statement):
     doc = nlp(statement) 
@@ -21,9 +15,7 @@ def entity_identify(statement):
         ent_label.append(ent.label_)
         
     return (ent_text,ent_label)
-    
-nlp_default = spacy.load("en_core_web_lg")
-
+	
 def get_keywords(keyword):
     doc = nlp_default(keyword)
     token=""
@@ -101,8 +93,8 @@ def get_keywords(keyword):
         return("if")
     elif(token == "then"):
         return("then")
-    elif(token == "else if" or "elif" or "elseif" or "if else" or "ifelse"):
-        return("else if")
+    #elif(token == "else if" or "elif" or "elseif" or "if else" or "ifelse"):
+    #    return("else if")
     elif(token == "else"):
         return ("else")
     
@@ -120,6 +112,9 @@ def get_keywords(keyword):
     else:
         return(token)
     
+#get_keywords("programme")
+#get_keywords("save") #Wierd bug with else if statement	
+
 def get_variables(statement):
     
     ent_text, ent_label = entity_identify(statement)
@@ -134,6 +129,15 @@ def get_variables(statement):
     curr_default_datatype = "NA"    
     curr_var_value = "NA"
     
+    #print(ent_label)
+    omit_if_none = ["VARI", "SCOPE", "DATATYPE", "VALUE", "TEXT"]
+    if (set(omit_if_none) & set(ent_label)): #If both intersects
+        #print("Something matches")
+        print("",end="")
+    else:
+        return(vari_name, vari_scope, vari_datatype, vari_value)
+            
+    
     variable_flag = [0, 0, 0, 0]
     for index in range(len(ent_text)):
         if ent_label[index] == "SEPERATOR" and 1 in variable_flag:
@@ -147,7 +151,6 @@ def get_variables(statement):
             curr_var_name = "NA"
             curr_var_scope = "NA"
             curr_var_value = "NA"
-            #print_data()
         
         if ent_label[index]== "VARI":
             variable_flag[0]+=1
@@ -205,6 +208,7 @@ def get_variables(statement):
                 curr_var_scope = "NA"
                 curr_var_value = "NA"
             curr_var_value = ent_text[index]
+            #print("Value detected: "+curr_var_value)
             
     #if curr_var_name != "NA":
     #    vari_name.append(curr_var_name)
@@ -213,14 +217,8 @@ def get_variables(statement):
     #else:
     #    vari_name.append("string_1")
     
-    #Special Cases - Start
-    if curr_default_datatype =="NA" and curr_var_name == "NA" and "TEXT" in ent_label:    
-        curr_var_name = "text_1"
-        curr_default_datatype = "string"
-    if curr_default_datatype !="NA" and curr_var_name == "NA":
-        curr_var_name = curr_default_datatype+"_1"    
-    #Special Cases - END
-    
+    #Special Cases - Start     
+    #Filling missing information if name is given (Last value only)
     if curr_var_name != "NA":
         vari_name.append(curr_var_name)    
         vari_scope.append(curr_var_scope)
@@ -231,9 +229,11 @@ def get_variables(statement):
         curr_var_name = "NA"
         curr_var_scope = "NA"
         curr_var_value = "NA"
-    
-    '''
+
+    #Filling missing information if no name is given (Last value only)
     elif curr_var_name == "NA":
+        if curr_default_datatype == "NA":
+            curr_default_datatype = assign_default_datatype(ent_label)
         vari_name.append(curr_default_datatype+"_1")
         vari_scope.append(curr_var_scope)
         vari_datatype.append(curr_default_datatype)
@@ -242,34 +242,46 @@ def get_variables(statement):
         variable_flag = [0, 0, 0, 0]
         curr_var_name = "NA"
         curr_var_scope = "NA"
-        curr_var_value = "NA"
-    '''    
-    
+        curr_var_value = "NA"      
+    #Special Cases - END
         
     #Set default datatype - START
-    
-    if vari_datatype[-1] == "NA":
-        if "VALUE" in ent_label: 
-            curr_default_datatype = get_keywords("float")
-        elif "TEXT" in ent_label:
-            curr_default_datatype = get_keywords("string")
-        else:
-            curr_default_datatype = get_keywords("string")
-        
-    for index, each_vari_datatype in enumerate(vari_datatype):
-        if each_vari_datatype == "NA":
-            vari_datatype[index] = curr_default_datatype
+    if vari_datatype != []:
+        if vari_datatype[-1] == "NA":
+            curr_default_datatype = assign_default_datatype(ent_label)
+            #if "VALUE" in ent_label: 
+            #    curr_default_datatype = get_keywords("float")
+            #elif "TEXT" in ent_label:
+            #    curr_default_datatype = get_keywords("string")
+            #else:
+            #    curr_default_datatype = get_keywords("string")
+            
+        for index, each_vari_datatype in enumerate(vari_datatype):
+            if each_vari_datatype == "NA":
+                vari_datatype[index] = curr_default_datatype                 
     #Set default datatype - END  
+    
+    #Solves first name as 'NA' bug - Start
+    for index, loop_vari in enumerate(vari_name):
+        if loop_vari == "NA":
+            temp_number_extension = 1
+            temp_name = vari_datatype[index]+"_"+str(temp_number_extension)
+            while temp_name in vari_name:
+                temp_number_extension += 1
+                temp_name = vari_datatype[index]+"_"+str(temp_number_extension)
+            vari_name[index] = temp_name
+    #Solves first name as 'NA' bug - End
     
     return(vari_name, vari_scope, vari_datatype, vari_value)
 
-def print_data():
-    print(vari_name)            
-    print(vari_scope)
-    print(vari_datatype)
-    print(vari_value)
+def assign_default_datatype(ent_label):
+    if "VALUE" in ent_label: 
+        return get_keywords("float")
+    elif "TEXT" in ent_label:
+        return get_keywords("string")
+    else:
+        return get_keywords("string")
     
-
 def get_func_prog_name(statement):
     
     ent_text, ent_label = entity_identify(statement)
@@ -277,18 +289,24 @@ def get_func_prog_name(statement):
     func_prog_name=""
     name_detector_flag = 0
     
+    
     for index in range(len(ent_text)):
-        if (name_detector_flag<2):
-            if (ent_label[index] == "FUNC_NAME"):
-                func_prog_name = ent_text[index]
-                name_detector_flag = 2
-                
-            elif(ent_label[index] == "FUNC_PROG"):
+        
+        #If user specifies the function name
+        if (ent_label[index] == "FUNC_NAME"):
+            func_prog_name = ent_text[index]
+            name_detector_flag = 2
+            break;
+        
+        #If user does not specifies the function name
+        if (name_detector_flag<2):                
+            if(ent_label[index] == "FUNC_PROG"):
                 if name_detector_flag ==0:
                     func_prog_name += ent_text[index]
-                elif name_detector_flag ==1:
+                elif name_detector_flag !=0:
                     func_prog_name += "_"+ ent_text[index]
-                name_detector_flag +=1
+                #name_detector_flag +=1
+                name_detector_flag +=0.5
                 
             elif(ent_label[index] == "OPERATOR"):
                 if name_detector_flag ==0:
@@ -300,21 +318,22 @@ def get_func_prog_name(statement):
             elif(ent_label[index] == "DATATYPE"):
                 if name_detector_flag ==0:
                     func_prog_name += ent_text[index]
-                elif name_detector_flag ==1:
+                elif name_detector_flag !=0:
                     func_prog_name += "_"+ ent_text[index]
                 name_detector_flag +=1
                 
             elif(ent_label[index] == "COMMAND"):
                 if name_detector_flag ==0:
                     func_prog_name += ent_text[index]
-                elif name_detector_flag ==1:
+                elif name_detector_flag !=0:
                     func_prog_name += "_"+ ent_text[index]
-                name_detector_flag +=1
+                #name_detector_flag +=1
+                name_detector_flag +=0.5
                 
             elif(ent_label[index] == "VARI"):
                 if name_detector_flag ==0:
                     func_prog_name += ent_text[index]
-                elif name_detector_flag ==1:
+                elif name_detector_flag !=0:
                     func_prog_name += "_"+ ent_text[index]
                 name_detector_flag +=1
                 
@@ -322,17 +341,19 @@ def get_func_prog_name(statement):
             func_prog_name = "program1"
     
     return (func_prog_name)
-
+	
 #import re
 def get_operations(statement):
     ent_text, ent_label = entity_identify(statement)
     
     operator=""
     variables=[]
+    special_class = ""
     for index in range(len(ent_text)):
               
         if(ent_label[index] == "OPERATOR"):
-            operator = get_keywords(ent_text[index])
+            if ent_text[index] == "+" and operator == "":
+                operator = get_keywords(ent_text[index])
             
         elif(ent_label[index] == "VARI"):
             variables.append(ent_text[index])
@@ -345,14 +366,36 @@ def get_operations(statement):
             variables.append(temp_remo_quote)
         
         if(ent_label[index] == "COMMAND"):
-            if (get_keywords(ent_text[index]) == "print"):
-                operator = get_keywords(ent_text[index])
-            if (get_keywords(ent_text[index]) == "input"):
-                operator = get_keywords(ent_text[index])
-    
-    return (operator, variables)
-    
-#Testing XML Function
+            operator = get_keywords(ent_text[index])
+        
+        if(ent_label[index] == "SPL_CLASS"):
+            special_class = ent_text[index]
+           
+    return (operator, variables, special_class)
+
+'''
+from xml.dom import minidom 
+import os  
+
+root = minidom.Document() 
+  
+xml = root.createElement('root')  
+root.appendChild(xml) 
+  
+productChild = root.createElement('product') 
+productChild.setAttribute('name', 'Geeks for Geeks') 
+  
+xml.appendChild(productChild) 
+  
+xml_str = root.toprettyxml(indent ="\t")  
+  
+save_path_file = "gfg.xml"
+  
+with open(save_path_file, "w") as f: 
+    f.write(xml_str)  
+'''
+
+#nlpToXML main function
 
 from xml.dom import minidom 
 import os 
@@ -421,7 +464,7 @@ def nlpToXML(statement):
     #Variables - End
     
     #Operations - START
-    oper, oper_vari_list = get_operations(statement)
+    oper, oper_vari_list, spl_class = get_operations(statement)
     if oper != "":
         operation = root.createElement(oper) 
         
@@ -430,7 +473,9 @@ def nlpToXML(statement):
                 operation.setAttribute('variable'+str(index+1), each_oper_vari)
             else :
                 operation.setAttribute('variable', each_oper_vari)
-
+        
+        if spl_class != "":
+            operation.setAttribute('spl_class', spl_class)
         prog.appendChild(operation)
         
     #Operations - END
@@ -438,57 +483,6 @@ def nlpToXML(statement):
     xml_str = root.toprettyxml(indent ="\t")  
     
     return(program_name, xml_str)
-
-
-import re
-statement = "create a function to add a and local number num_1 = 15 and b"
-#statement = "print A and B"
-
-#statement = "define global variable"
-#statement = "create variable"
-#statement = "set variable equal to 10"
-#statement = "set variable i=10"
-#statement = "define variable i"
-#statement = "create variable i"
-#statement = "set variable equal I to 0"
-#statement = "set variable i=0"
-#statement = "define variable j"
-#statement = "create variable j"
-#statement = "set variable equal j to 0"
-#statement = "set variable j=0"
-#statement = "set text = 'hi'"
-#statement = "define variable text1"
-#statement = "define variable text1='please enter value'"
-#statement = "set variable text1='please enter value'"
-#statement = "set text1='please enter value'"
-#statement = "print text1"
-#statement = "print 'please select value'"
-#statement = "print i"
-#-----------------------------------------#statement = "print text1 + i"
-#statement = "print 'please select value' + i"
-#statement = "input text1"
-#statement = "input 'please enter name'"
-#statement = "get text1"
-#statement = "get 'please enter name'"
-#statement = "print a on screen"
-#statement = "print b"
-#-----------------------------------------#statement = "show a"
-#statement = "show b on screen"
-#statement = "print a to log"
-#statement = "print b to log"
-#statement = "print a to printer"
-#statement = "print b to printer"
-#statement = "save name"
-#statement = "save name and address"
-#statement = "save name to database"
-#statement = "save name and address to database"
-#statement = "save name to file"
-#statement = "save name1 and address to file"
-
-
-#statement = "add a and local number numq = 15 and b"
-#statement = "show aasaf1"
-
 
 source = "Data"
 filename = "pseudocode.xml" 
@@ -505,13 +499,6 @@ def XML_Creator_func(statement, save_path_file):
         os.makedirs(source)
 
     with open(save_path_file, "w") as f: 
-        f.write(xml_str)   
+        f.write(xml_str)  
 
-#XML_Creator_func(statement, save_path_file) 
-
-#print(xml_str)
- 
-#print( get_keywords("programme") )
-#print( get_variables(statement) )
-#print( get_func_prog_name(statement) )
-#print( get_operations(statement) )
+XML_Creator_func(statement, save_path_file)	
