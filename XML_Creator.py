@@ -488,6 +488,7 @@ source = "Data"
 filename = "pseudocode.xml" 
 save_path_file = os.path.join(source, filename) 
 
+import re
 def XML_Creator_func(statement, save_path_file):
 
     statement = re.sub("=", " = ", statement)
@@ -501,4 +502,4 @@ def XML_Creator_func(statement, save_path_file):
     with open(save_path_file, "w") as f: 
         f.write(xml_str)  
 
-XML_Creator_func(statement, save_path_file)	
+#XML_Creator_func(statement, save_path_file)	
