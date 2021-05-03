@@ -1,11 +1,10 @@
 <?xml version="1.0" ?>
 <root>
-	<statement value="create a function to add a and local number num_1 = 15 and b"/>
-	<program type="function" name="program1function_a">
+	<statement value="save name1 to file"/>
+	<program type="program" name="save_name1">
 		<variables>
-			<variable name="a" datatype="number"/>
-			<variable name="num_1" scope="local" datatype="number" value="15"/>
-			<variable name="b" datatype="number"/>
+			<variable name="name1" datatype="string"/>
 		</variables>
+		<save variable="name1" spl_class="file"/>
 	</program>
 </root>
