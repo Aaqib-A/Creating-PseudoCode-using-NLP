@@ -1,5 +1,5 @@
 def main():
-	string b 
+	variable text1 = 'please enter value'
 
 
 

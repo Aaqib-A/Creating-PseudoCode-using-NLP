@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<root>
+	<statement value="define variable text1 = 'please enter value'"/>
+	<program type="program" name="define_variable">
+		<variables>
+			<variable name="text1" datatype="variable" value="'please enter value'"/>
+		</variables>
+	</program>
+</root>

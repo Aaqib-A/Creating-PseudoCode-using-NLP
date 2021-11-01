@@ -1,7 +1,7 @@
-def main():
-	integer v1 
+def make_function():
+	integer side1 
+	float s2 
 
+	answer = side1 / s2
 
-
-if __name__ == "__main__":
-	main()
+make_function()

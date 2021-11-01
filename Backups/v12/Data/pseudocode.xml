@@ -1,11 +1,12 @@
 <?xml version="1.0" ?>
 <root>
-	<statement value="create int v1
-
+	<statement value="make a function to divide integers side1 and float s2
 "/>
-	<program type="program" name="create_int">
+	<program type="function" name="make_function">
 		<variables>
-			<variable name="v1" datatype="integer"/>
+			<variable name="side1" datatype="integer"/>
+			<variable name="s2" datatype="float"/>
 		</variables>
+		<divide variable1="side1" variable2="s2"/>
 	</program>
 </root>

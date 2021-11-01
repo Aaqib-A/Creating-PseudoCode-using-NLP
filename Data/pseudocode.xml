@@ -1,11 +1,9 @@
 <?xml version="1.0" ?>
 <root>
-	<statement value="show asd as database
-"/>
-	<program type="program" name="show_asd">
+	<statement value="add a and b"/>
+	<program type="program" name="add_b">
 		<variables>
-			<variable name="asd" datatype="string"/>
+			<variable name="b" datatype="string"/>
 		</variables>
-		<print variable="asd" spl_class="database"/>
 	</program>
 </root>

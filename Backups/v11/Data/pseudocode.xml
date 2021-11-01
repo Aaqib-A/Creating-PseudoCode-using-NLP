@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<root>
+	<statement value="create a function to add a and local number num_1 = 15 and b"/>
+	<program type="function" name="create_function">
+		<variables>
+			<variable name="a" datatype="number"/>
+			<variable name="num_1" scope="local" datatype="number" value="15"/>
+			<variable name="b" datatype="number"/>
+		</variables>
+		<add variable1="a" variable2="num_1" variable3="b"/>
+	</program>
+</root>
