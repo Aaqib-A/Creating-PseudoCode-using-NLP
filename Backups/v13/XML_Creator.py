@@ -4,13 +4,6 @@ from spacy import displacy
 nlp = spacy.load("./NLP_Object")
 nlp_default = spacy.load("en_core_web_lg")
 
-'''
-
-def entity_display(statement):
-    doc = nlp(statement) 
-    for ent in doc.ents:
-        print (ent.text, ent.start_char, ent.end_char, ent.label_)
-'''	
 def entity_identify(statement):
     doc = nlp(statement) 
     
@@ -22,7 +15,7 @@ def entity_identify(statement):
         ent_label.append(ent.label_)
         
     return (ent_text,ent_label)
-
+	
 def get_keywords(keyword):
     doc = nlp_default(keyword)
     token=""
@@ -118,7 +111,6 @@ def get_keywords(keyword):
         
     else:
         return(token)
-
     
 #get_keywords("programme")
 #get_keywords("save") #Wierd bug with else if statement	
@@ -290,7 +282,6 @@ def assign_default_datatype(ent_label):
     else:
         return get_keywords("string")
     
-    
 def get_func_prog_name(statement):
     
     ent_text, ent_label = entity_identify(statement)
@@ -351,7 +342,7 @@ def get_func_prog_name(statement):
     
     return (func_prog_name)
 	
-import re
+#import re
 def get_operations(statement):
     ent_text, ent_label = entity_identify(statement)
     
@@ -360,8 +351,9 @@ def get_operations(statement):
     special_class = ""
     for index in range(len(ent_text)):
               
-        if(ent_label[index] == "OPERATOR" and operator == ""):
-            operator = get_keywords(ent_text[index])
+        if(ent_label[index] == "OPERATOR"):
+            if ent_text[index] == "+" and operator == "":
+                operator = get_keywords(ent_text[index])
             
         elif(ent_label[index] == "VARI"):
             variables.append(ent_text[index])
@@ -381,7 +373,6 @@ def get_operations(statement):
            
     return (operator, variables, special_class)
 
-#Reference Material
 '''
 from xml.dom import minidom 
 import os  
@@ -405,7 +396,6 @@ with open(save_path_file, "w") as f:
 '''
 
 #nlpToXML main function
-
 
 from xml.dom import minidom 
 import os 
@@ -498,6 +488,7 @@ source = "Data"
 filename = "pseudocode.xml" 
 save_path_file = os.path.join(source, filename) 
 
+import re
 def XML_Creator_func(statement, save_path_file):
 
     statement = re.sub("=", " = ", statement)
@@ -509,6 +500,6 @@ def XML_Creator_func(statement, save_path_file):
         os.makedirs(source)
 
     with open(save_path_file, "w") as f: 
-        f.write(xml_str)   
+        f.write(xml_str)  
 
 #XML_Creator_func(statement, save_path_file)	

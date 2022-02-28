@@ -1,9 +1,13 @@
 <?xml version="1.0" ?>
 <root>
-	<statement value="add a and b"/>
-	<program type="program" name="add_b">
+	<statement value="add a1 and b
+
+"/>
+	<program type="program" name="add_a1">
 		<variables>
+			<variable name="a1" datatype="string"/>
 			<variable name="b" datatype="string"/>
 		</variables>
+		<add variable1="a1" variable2="b"/>
 	</program>
 </root>
