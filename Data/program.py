@@ -1,8 +1,8 @@
 def main():
-	string a1 
-	string b 
+	string var1 
+	string var2 
 
-	answer = a1 + b
+	print(var1 + var2)
 
 
 if __name__ == "__main__":

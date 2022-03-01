@@ -4,13 +4,13 @@ from spacy import displacy
 nlp = spacy.load("./NLP_Object")
 nlp_default = spacy.load("en_core_web_lg")
 
-'''
+
 
 def entity_display(statement):
     doc = nlp(statement) 
     for ent in doc.ents:
         print (ent.text, ent.start_char, ent.end_char, ent.label_)
-'''	
+
 def entity_identify(statement):
     doc = nlp(statement) 
     
@@ -288,8 +288,7 @@ def assign_default_datatype(ent_label):
     elif "TEXT" in ent_label:
         return get_keywords("string")
     else:
-        return get_keywords("string")
-    
+        return get_keywords("string")    
     
 def get_func_prog_name(statement):
     
@@ -362,7 +361,7 @@ def get_operations(statement):
               
         if(ent_label[index] == "OPERATOR" and operator == ""):
             operator = get_keywords(ent_text[index])
-            
+   
         elif(ent_label[index] == "VARI"):
             variables.append(ent_text[index])
         
@@ -501,7 +500,9 @@ save_path_file = os.path.join(source, filename)
 def XML_Creator_func(statement, save_path_file):
 
     statement = re.sub("=", " = ", statement)
+    statement = re.sub("\n", " ", statement)
     statement = re.sub("  "," ", statement)   
+    
 
     program_name, xml_str = nlpToXML(statement)
 
@@ -510,5 +511,8 @@ def XML_Creator_func(statement, save_path_file):
 
     with open(save_path_file, "w") as f: 
         f.write(xml_str)   
+        
+    print(entity_identify(statement))
+    print(get_operations(statement))
 
 #XML_Creator_func(statement, save_path_file)	
